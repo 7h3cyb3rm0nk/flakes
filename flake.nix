@@ -15,6 +15,7 @@
         devShells = {
         python = import ./shells/python.nix {inherit pkgs ;};
         cuda = import ./shells/cuda.nix {inherit pkgs;};
+        ember-shell = import ./shells/ember-shell.nix {inherit pkgs;};
       };
     }
   );
