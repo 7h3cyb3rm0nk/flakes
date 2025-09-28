@@ -14,6 +14,7 @@
         in {
         devShells = {
         python = import ./shells/python.nix {inherit pkgs ;};
+        cuda = import ./shells/cuda.nix {inherit pkgs;};
       };
     }
   );
