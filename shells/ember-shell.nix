@@ -1,14 +1,26 @@
-{pkgs }:
-pkgs.mkShell {
+{pkgs21 }:
+let
+
+pythonEnv = pkgs21.python36.withPackages (ps:
+          with ps; [
+            pip
+            wheel
+            virtualenv
+          ]
+        );
+in 
+pkgs21.mkShell {
           name = "pythonEnv";
           buildInputs = [ pythonEnv ];
 
-          nativeBuildInputs = with pkgs;  [
+          nativeBuildInputs = with pkgs21;  [
             zlib
             glibc
             libffi
             openssl
             stdenv.cc
+            stdenv.cc.libc
+            gcc.libc
             stdenv.glibc
             
           ];
@@ -24,6 +36,8 @@ pkgs.mkShell {
 
             python -V
           echo "EMBER env"
+          export LD_LIBRARY_PATH=${pkgs21.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH
+
           '';     
 }
 
