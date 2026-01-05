@@ -18,6 +18,13 @@
         python = import ./shells/python.nix {inherit pkgs ;};
         cuda = import ./shells/cuda.nix {inherit pkgs;};
         ember-shell = import ./shells/ember-shell.nix {inherit pkgs21;};
+        bun-shell = import ./shells/bun.nix { inherit pkgs; };
+        default = pkgs.mkShell {
+          name = "default shell";
+          shellHook = ''
+          echo "Default shell EMPTY"
+          '';
+        };
       };
     }
   );
